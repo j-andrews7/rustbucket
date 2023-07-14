@@ -4,9 +4,8 @@ use rayon::prelude::*;
 /// Compute the Hamming distance between a sequence and a vector of sequences with a limit. Complexity: O(n).
 /// @export
 #[extendr]
-fn hamming(alpha: &str, beta: Vec<String>, limit: u64, num_threads: i32) -> Vec<u64> {
-    let num_threads = num_threads as usize; // convert to usize
-    rayon::ThreadPoolBuilder::new().num_threads(num_threads).build_global().unwrap();
+fn hamming(alpha: &str, beta: Vec<String>, limit: u64) -> Vec<u64> {
+    let alpha_bytes = alpha.as_bytes();
 
     beta.par_iter().map(|seq| {
         assert_eq!(
@@ -16,8 +15,11 @@ fn hamming(alpha: &str, beta: Vec<String>, limit: u64, num_threads: i32) -> Vec<
             alpha.len(),
             seq.len()
         );
+
+        let seq_bytes = seq.as_bytes();
+
         let mut dist = 0;
-        for (a, b) in alpha.chars().zip(seq.chars()) {
+        for (a, b) in alpha_bytes.iter().zip(seq_bytes) {
             if a != b {
                 dist += 1;
                 if dist > limit {

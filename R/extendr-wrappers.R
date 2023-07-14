@@ -13,7 +13,7 @@ NULL
 
 #' Compute the Hamming distance between a sequence and a vector of sequences with a limit. Complexity: O(n).
 #' @export
-hamming <- function(alpha, beta, limit, num_threads) .Call(wrap__hamming, alpha, beta, limit, num_threads)
+hamming <- function(alpha, beta, limit) .Call(wrap__hamming, alpha, beta, limit)
 
 
 # nolint end

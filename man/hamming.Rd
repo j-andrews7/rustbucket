@@ -4,7 +4,7 @@
 \alias{hamming}
 \title{Compute the Hamming distance between a sequence and a vector of sequences with a limit. Complexity: O(n).}
 \usage{
-hamming(alpha, beta, limit, num_threads)
+hamming(alpha, beta, limit)
 }
 \description{
 Compute the Hamming distance between a sequence and a vector of sequences with a limit. Complexity: O(n).
